@@ -15,27 +15,30 @@ class find_TrueLoveViewController: UIViewController {
     @IBOutlet weak var trueSwitch: UISwitch!
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var resultSegctl: UISegmentedControl!
+
+    @IBAction func ageSlider(_ sender: UISlider) {
+        let currentAge = Int(sender.value)
+        ageLabel.text = "\(currentAge)"
+    }
     
     @IBAction func findTrueLove(_ sender: AnyObject) {
         let constellation = constellationTextField.text!
         let sex = sexSegctl.selectedSegmentIndex
         let trueLove = trueSwitch.isOn
-        let age = Int(ageLabel.text!)
-        resultSegctl.isHidden = true
+        let age:Int! = Int(ageLabel.text!)
+        resultSegctl.isHidden = false
         
-        if constellation == "Aries" && sex == 1 && trueLove && age! <= 35 && age! >= 26
+        if constellation == "Aries" && sex == 1 && trueLove && age <= 35 && age >= 26
         {
             resultSegctl.selectedSegmentIndex = 0
-            resultSegctl.isHidden = false
         }
         else
         {
             resultSegctl.selectedSegmentIndex = 1
-            resultSegctl.isHidden = false
-
         }
         
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
